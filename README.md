@@ -11,4 +11,4 @@ If They Are Separated. To Clear Up What The Other Files Are Doing,
 
 - The _GTA_Fix.exe_ Is A Folder Selector As Certain Options Require The User To Select A Certain Directory
 - The _temp.bat_ Hosts A Line Of Code The Batch Calls For When Using Certain Options
-- And The Text File Simply Hosts ASI11 Text For The GUI
+- And The Text File Simply Hosts ASCII Text For The GUI
