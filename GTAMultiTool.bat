@@ -1,5 +1,5 @@
 @echo off
-title GTA V Menu/Mod Uninstall Tool ---- itschrome#4043 ---- https://discord.gg/pXMj5Gd7b3
+title GTA V MultiTool ---- itschrome#4043 ---- https://discord.gg/pXMj5Gd7b3
 cls
 color 03
 
@@ -10,7 +10,7 @@ color 03
 type "%~dp0mysticservices.txt"
 echo.
 
-echo Welcome to the GTA V Menu/Mod Uninstall Tool. (Made by Chrome)
+echo Welcome to the GTA V MultiTool. (Made by Chrome)
 echo.
 echo Feel Free to Share Our Services With Your Friends Using This Link:
 echo https://discord.gg/pXMj5Gd7b3
@@ -22,8 +22,8 @@ echo.
 echo ********************************************************************************************
 echo *                                      WARNING !!!                                         *
 echo *                                                                                          *
-echo * You are about to delete game files and folders from your game's directory, if the game   *
-echo * stops working, scan and repair your files on your respected launcher                     *            
+echo * Some of these features delete game files and folders from your game's directory, if the  *
+echo * game stops working, scan and repair your files using your respected game launcher.       *            
 echo *                                                                                          *
 echo ********************************************************************************************
 echo.
@@ -670,18 +670,23 @@ color 03
 echo Selected Option: 4-1
 echo.
 echo.
-echo This Will Uninstall The Menu Settings, You Will Have To Delete The Loader Folder Manually
-Ping localhost -n 4 >Nul
+echo Please Enter The Path of Your Loader Folder. (Script Wont Work If Path Is Entered Incorrectly)
+echo.
+set /p cheraxloaderlocal="Folder Path: "
 cls
 echo Cleaning files and folders...
 echo.
+Ping localhost -n 4 >Nul
+cls
+echo Removing Loader
+rd /s /q %cheraxloaderlocal%
 Ping localhost -n 4 >Nul
 cls
 echo Removing Cherax Settings Directory
 rd /s /q "%appdata%\Cherax"
 Ping localhost -n 4 >Nul
 cls
-echo Folder Successfully Removed
+echo Folders Successfully Removed
 Ping localhost -n 2 >Nul
 GOTO :END
 
