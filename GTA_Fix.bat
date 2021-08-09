@@ -1,4 +1,4 @@
-@Echo off
+@echo off
 title GTA V Menu/Mod Uninstall Tool ---- itschrome#4043 ---- https://discord.gg/pXMj5Gd7b3
 cls
 color 03
@@ -410,7 +410,7 @@ echo   -------------------------------------------------------------------------
 echo.
 echo   1. Uninstall 2Take1
 echo.
-echo   2. Redownload Scripts (Only Ones Uploaded To Github - Moist, Owls, Kanker)
+echo   2. Download Shared Files/Scripts (Only Scripts Uploaded To Github - Moist, Owls, Kanker)
 echo.
 echo   ------------------------------------------------------------------------------------------
 echo.
@@ -427,7 +427,7 @@ if not "%id2t1%"=="1" (
 
 :2T1OPTION2
 if "%id2t1%"=="2" (
-	GOTO :2T1SCRIPTS
+	GOTO :2T1FILES
 )
 if not "%id2t1%"=="2" (
 	GOTO :2T1INVALID
@@ -449,7 +449,7 @@ echo.
 echo Please Type The Name Of The Location Of Your Loader Folder. (CASE SENSITIVE! - I.E "Desktop" "Documents" etc.)
 echo If It Is Not Installed In One Of Those Main Folders, Please Enter The Path Where It Is Installed.
 echo.
-set /p nveloaderlocal="Folder Name/Path: "
+set /p 2t1loaderlocal="Folder Name/Path: "
 cls
 echo Cleaning files and folders...
 echo.
@@ -463,45 +463,144 @@ cls
 echo Cleaning files and folders...
 echo.
 echo Removing Loader Directory
-rd /s /q "%nveloaderlocal%\latest_vip"
-rd /s /q "%nveloaderlocal%\latest_standard"
+rd /s /q "%2t1loaderlocal%\latest_vip"
+rd /s /q "%2t1loaderlocal%\latest_standard"
 Ping localhost -n 4 >Nul
 cls
 echo Folders Successfully Removed
 Ping localhost -n 4 >Nul
 GOTO :END
 
-:2T1SCRIPTS
+:2T1FILES
 cls
 @echo off
 color 03
-echo Selected Option: 3-2 (2Take1 Scripts Download)
+echo Selected Option: 3-2 (2Take1 File Download)
 echo.
 echo.
 Ping localhost -n 4 >Nul
+echo Downloading Main Files + Kek's Menu
+echo.
+git clone https://github.com/itschrome/2Take1Files %UserProfile%\Desktop\2Take1Files
+echo.
 echo Downloading MoistScript...
+echo.
 git clone https://github.com/IN2-Moist/2Take1-Moist-Script %UserProfile%\Desktop\Scripts\MoistScript
-Ping localhost -n 4 >Nul
-cls
+echo.
 echo Downloading KankerHax...
+echo.
 git clone https://github.com/UnknownModderr/KankerHax %UserProfile%\Desktop\Scripts\KankerHax
-Ping localhost -n 4 >Nul
-cls
+echo.
 echo Downloading Owl's Tuner Recovery...
+echo.
 git clone https://github.com/0wl/owls-tuners-recovery %UserProfile%\Desktop\Scripts\OwlsTunerRecovery
+echo.
+echo Downloading ZeroMenu...
+git clone https://github.com/luamod1337/ZeroMenu %UserProfile%\Desktop\Scripts\ZeroMenu
+cls
+echo Unzipping "headers.zip"...
+
+setlocal
+cd /d %~dp0
+Call :UnZipFile "%UserProfile%\Desktop\2Take1Files" "%UserProfile%\Desktop\2Take1Files\headers.zip"
+exit /b
+
+:UnZipFile <ExtractTo> <newzipfile>
+set vbs="%temp%\_.vbs"
+if exist %vbs% del /f /q %vbs%
+>%vbs%  echo Set fso = CreateObject("Scripting.FileSystemObject")
+>>%vbs% echo If NOT fso.FolderExists(%1) Then
+>>%vbs% echo fso.CreateFolder(%1)
+>>%vbs% echo End If
+>>%vbs% echo set objShell = CreateObject("Shell.Application")
+>>%vbs% echo set FilesInZip=objShell.NameSpace(%2).items
+>>%vbs% echo objShell.NameSpace(%1).CopyHere(FilesInZip)
+>>%vbs% echo Set fso = Nothing
+>>%vbs% echo Set objShell = Nothing
+cscript //nologo %vbs%
+if exist %vbs% del /f /q %vbs%
+Ping localhost -n 2 >Nul
+cls
+
+echo Unzipping "moddedOutfits.zip"...
+
+setlocal
+cd /d %~dp0
+Call :UnZipFile "%UserProfile%\Desktop\2Take1Files" "%UserProfile%\Desktop\2Take1Files\moddedOutfits.zip"
+exit /b
+
+:UnZipFile <ExtractTo> <newzipfile>
+set vbs="%temp%\_.vbs"
+if exist %vbs% del /f /q %vbs%
+>%vbs%  echo Set fso = CreateObject("Scripting.FileSystemObject")
+>>%vbs% echo If NOT fso.FolderExists(%1) Then
+>>%vbs% echo fso.CreateFolder(%1)
+>>%vbs% echo End If
+>>%vbs% echo set objShell = CreateObject("Shell.Application")
+>>%vbs% echo set FilesInZip=objShell.NameSpace(%2).items
+>>%vbs% echo objShell.NameSpace(%1).CopyHere(FilesInZip)
+>>%vbs% echo Set fso = Nothing
+>>%vbs% echo Set objShell = Nothing
+cscript //nologo %vbs%
+if exist %vbs% del /f /q %vbs%
 Ping localhost -n 4 >Nul
 cls
-echo Moving Files To 2Take1 Scripts Directory...
+
+echo Unzipping "Kek'sMenu.zip"...
+
+setlocal
+cd /d %~dp0
+Call :UnZipFile "%UserProfile%\Desktop\2Take1Files" "%UserProfile%\Desktop\2Take1Files\Kek'sMenu.zip"
+exit /b
+
+:UnZipFile <ExtractTo> <newzipfile>
+set vbs="%temp%\_.vbs"
+if exist %vbs% del /f /q %vbs%
+>%vbs%  echo Set fso = CreateObject("Scripting.FileSystemObject")
+>>%vbs% echo If NOT fso.FolderExists(%1) Then
+>>%vbs% echo fso.CreateFolder(%1)
+>>%vbs% echo End If
+>>%vbs% echo set objShell = CreateObject("Shell.Application")
+>>%vbs% echo set FilesInZip=objShell.NameSpace(%2).items
+>>%vbs% echo objShell.NameSpace(%1).CopyHere(FilesInZip)
+>>%vbs% echo Set fso = Nothing
+>>%vbs% echo Set objShell = Nothing
+cscript //nologo %vbs%
+if exist %vbs% del /f /q %vbs%
+Ping localhost -n 2 >Nul
+cls
+
+echo Moving Files To 2Take1 Directory...
+Ping localhost -n 2 >Nul
+if not exist "%appdata%\PopstarDevs\2Take1Menu\scripts" mkdir "%appdata%\PopstarDevs\2Take1Menu\scripts"
+if not exist "%appdata%\PopstarDevs\2Take1Menu\cfg" mkdir "%appdata%\PopstarDevs\2Take1Menu\cfg"
+if not exist "%appdata%\PopstarDevs\2Take1Menu\ui" mkdir "%appdata%\PopstarDevs\2Take1Menu\ui"
+if not exist "%appdata%\PopstarDevs\2Take1Menu\ui\headers" mkdir "%appdata%\PopstarDevs\2Take1Menu\ui\headers"
 move %UserProfile%\Desktop\Scripts\KankerHax\KankerHax.lua %appdata%\PopstarDevs\2Take1Menu\scripts
 move %UserProfile%\Desktop\Scripts\MoistScript\MoistsLUA_cfg %appdata%\PopstarDevs\2Take1Menu\scripts
 move %UserProfile%\Desktop\Scripts\MoistScript\*.lua* %appdata%\PopstarDevs\2Take1Menu\scripts
 move %UserProfile%\Desktop\Scripts\OwlsTunerRecovery\*.lua %appdata%\PopstarDevs\2Take1Menu\scripts
+move %UserProfile%\Desktop\2Take1Files\*.cfg* %appdata%\PopstarDevs\2Take1Menu\cfg
+move %UserProfile%\Desktop\2Take1Files\headers\*.dds* %appdata%\PopstarDevs\2Take1Menu\ui\headers
+move %UserProfile%\Desktop\2Take1Files\moddedOutfits %appdata%\PopstarDevs\2Take1Menu
+move %UserProfile%\Desktop\2Take1Files\MenyooVehicles %appdata%\PopstarDevs\2Take1Menu\scripts
+move %UserProfile%\Desktop\Scripts\ZeroMenu\src\*.lua* %appdata%\PopstarDevs\2Take1Menu\scripts
+move %UserProfile%\Desktop\Scripts\ZeroMenu\src\ZeroMenuLib %appdata%\PopstarDevs\2Take1Menu\scripts
+move %UserProfile%\Desktop\2Take1Files\2Take1Script\2Take1Script %appdata%\PopstarDevs\2Take1Menu\scripts
+move %UserProfile%\Desktop\2Take1Files\2Take1Script\lib %appdata%\PopstarDevs\2Take1Menu\scripts
+move %UserProfile%\Desktop\2Take1Files\2Take1Script\*.lua* %appdata%\PopstarDevs\2Take1Menu\scripts
+move %UserProfile%\Desktop\2Take1Files\Heist_Control_v2\*.lua* %appdata%\PopstarDevs\2Take1Menu\scripts
+move %UserProfile%\Desktop\2Take1Files\Kek'sMenu\kek_menu_stuff %appdata%\PopstarDevs\2Take1Menu\scripts
+move %UserProfile%\Desktop\2Take1Files\Kek'sMenu\*.lua* %appdata%\PopstarDevs\2Take1Menu\scripts
+
 Ping localhost -n 4 >Nul
 cls
 echo Files Have Been Moved, Cleaning Up Leftover Download Folder/Files...
 rd /s /q %UserProfile%\Desktop\Scripts
+rd /s /q %UserProfile%\Desktop\2Take1Files
 Ping localhost -n 4 >Nul
 cls
+echo.
 echo Operation Complete!
 Ping localhost -n 4 >Nul
 GOTO :END
