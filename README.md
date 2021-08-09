@@ -1,10 +1,10 @@
 # GTAMultiTool
-A MultiTool For Modder Use
+Uninstall And Redownload Menus/Files With Ease
 
-This Tool Is Used Mainly For Uninstalling A Few Menus,
-Downloading Scripts For 2Take1 Users,
+This Tool Is Used Mainly For Uninstalling Menus,
+Downloading Scripts And Other Files,
 Uninstalling Mods Like NVE,
-and Fixing Game Crashes Related To Files
+and Fixing Game Crashes Related To Faulty Files
 
 To Clear Up What The Other Files Are Doing,
 
