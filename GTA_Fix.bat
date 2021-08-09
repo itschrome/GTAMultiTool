@@ -44,7 +44,7 @@ echo   2. Uninstall NVE
 echo.
 echo   3. 2Take1 Options
 echo.
-echo   4. Uninstall Cherax
+echo   4. Cherax Options
 echo.
 echo   5. Uninstall Ozark
 echo.
@@ -412,6 +412,8 @@ echo   1. Uninstall 2Take1
 echo.
 echo   2. Download Shared Files/Scripts (Only Scripts Uploaded To Github - Moist, Owls, Kanker)
 echo.
+echo   3. Go Back
+echo.
 echo   ------------------------------------------------------------------------------------------
 echo.
 color 03
@@ -430,6 +432,14 @@ if "%id2t1%"=="2" (
 	GOTO :2T1FILES
 )
 if not "%id2t1%"=="2" (
+	GOTO :2T1INVALID
+)
+
+:2T1OPTION3
+if "%id2t1%"=="3" (
+	GOTO :OPTION
+)
+if not "%id2t1%"=="3" (
 	GOTO :2T1INVALID
 )
 
@@ -608,7 +618,56 @@ GOTO :END
 :CHERAX
 cls
 color 03
-echo Selected Option: 4
+echo Please Select An Option Below:
+echo.
+echo   ------------------------------------------------------------------------------------------
+echo.
+echo   1. Uninstall Cherax
+echo.
+echo   2. Download Files (Themes Only For Now)
+echo.
+echo   3. Go Back
+echo.
+echo   ------------------------------------------------------------------------------------------
+echo.
+color 03
+set /p idcherax="Option: "
+
+:CHERAXOPTION1
+if "%idcherax%"=="1" (
+	GOTO :CHERAXREM
+)
+if not "%idcherax%"=="1" (
+	GOTO :CHERAXOPTION2
+)
+
+:CHERAXOPTION2
+if "%idcherax%"=="2" (
+	GOTO :CHERAXFILES
+)
+if not "%idcherax%"=="2" (
+	GOTO :CHERAXOPTION3
+)
+
+:CHERAXOPTION3
+if "%idcherax%"=="3" (
+	GOTO :OPTION
+)
+if not "%idcherax%"=="3" (
+	GOTO :CHERAXINVALID
+)
+
+:CHERAXINVALID
+cls
+color 03
+echo Invalid Option
+timeout 3
+GOTO :CHERAX
+
+:CHERAXREM
+cls
+color 03
+echo Selected Option: 4-1
 echo.
 echo.
 echo This Will Uninstall The Menu Settings, You Will Have To Delete The Loader Folder Manually
@@ -625,6 +684,67 @@ cls
 echo Folder Successfully Removed
 Ping localhost -n 2 >Nul
 GOTO :END
+
+:CHERAXFILES
+cls
+@echo off
+color 03
+echo Selected Option: 4-2 (Cherax File Download)
+echo.
+echo.
+Ping localhost -n 4 >Nul
+echo Downloading Themes... Please Wait!
+git clone https://github.com/itschrome/CheraxFiles %UserProfile%\Desktop\CheraxFiles
+echo.
+Ping localhost -n 2 >Nul
+echo Unzipping and Relocating Files To "%appdata%\Cherax"
+powershell -Command "Expand-Archive %UserProfile%\Desktop\CheraxFiles\Aureate.zip -DestinationPath %appdata%\Cherax\Themes"
+powershell -Command "Expand-Archive %UserProfile%\Desktop\CheraxFiles\Belle.zip -DestinationPath %appdata%\Cherax\Themes"
+powershell -Command "Expand-Archive %UserProfile%\Desktop\CheraxFiles\BlackAndWhite.zip -DestinationPath %appdata%\Cherax\Themes"
+powershell -Command "Expand-Archive %UserProfile%\Desktop\CheraxFiles\BlackPink.zip -DestinationPath %appdata%\Cherax\Themes"
+powershell -Command "Expand-Archive %UserProfile%\Desktop\CheraxFiles\BlackWhite.zip -DestinationPath %appdata%\Cherax\Themes"
+powershell -Command "Expand-Archive %UserProfile%\Desktop\CheraxFiles\CarDrive.zip -DestinationPath %appdata%\Cherax\Themes"
+powershell -Command "Expand-Archive %UserProfile%\Desktop\CheraxFiles\CyanHoneycomb.zip -DestinationPath %appdata%\Cherax\Themes"
+powershell -Command "Expand-Archive %UserProfile%\Desktop\CheraxFiles\Digital.zip -DestinationPath %appdata%\Cherax\Themes"
+powershell -Command "Expand-Archive %UserProfile%\Desktop\CheraxFiles\FromRussiaWithPutin.zip -DestinationPath %appdata%\Cherax\Themes"
+powershell -Command "Expand-Archive %UserProfile%\Desktop\CheraxFiles\Furran.zip -DestinationPath %appdata%\Cherax\Themes"
+powershell -Command "Expand-Archive %UserProfile%\Desktop\CheraxFiles\HOREbeHERO.zip -DestinationPath %appdata%\Cherax\Themes"
+powershell -Command "Expand-Archive %UserProfile%\Desktop\CheraxFiles\LUNAV2.zip -DestinationPath %appdata%\Cherax\Themes"
+powershell -Command "Expand-Archive %UserProfile%\Desktop\CheraxFiles\LUNA.zip -DestinationPath %appdata%\Cherax\Themes"
+powershell -Command "Expand-Archive %UserProfile%\Desktop\CheraxFiles\Losantos.zip -DestinationPath %appdata%\Cherax\Themes"
+powershell -Command "Expand-Archive %UserProfile%\Desktop\CheraxFiles\Minecraft.zip -DestinationPath %appdata%\Cherax\Themes"
+powershell -Command "Expand-Archive %UserProfile%\Desktop\CheraxFiles\MinimalGreen.zip -DestinationPath %appdata%\Cherax\Themes"
+powershell -Command "Expand-Archive %UserProfile%\Desktop\CheraxFiles\NFS.zip -DestinationPath %appdata%\Cherax\Themes"
+powershell -Command "Expand-Archive %UserProfile%\Desktop\CheraxFiles\PH.zip -DestinationPath %appdata%\Cherax\Themes"
+powershell -Command "Expand-Archive %UserProfile%\Desktop\CheraxFiles\Pornhub.zip -DestinationPath %appdata%\Cherax\Themes"
+powershell -Command "Expand-Archive %UserProfile%\Desktop\CheraxFiles\Quantum.zip -DestinationPath %appdata%\Cherax\Themes"
+powershell -Command "Expand-Archive %UserProfile%\Desktop\CheraxFiles\REDCARBON.zip -DestinationPath %appdata%\Cherax\Themes"
+powershell -Command "Expand-Archive %UserProfile%\Desktop\CheraxFiles\SciFi.zip -DestinationPath %appdata%\Cherax\Themes"
+powershell -Command "Expand-Archive %UserProfile%\Desktop\CheraxFiles\Space.zip -DestinationPath %appdata%\Cherax\Themes"
+powershell -Command "Expand-Archive %UserProfile%\Desktop\CheraxFiles\Synthwave.zip -DestinationPath %appdata%\Cherax\Themes"
+powershell -Command "Expand-Archive %UserProfile%\Desktop\CheraxFiles\Terror.zip -DestinationPath %appdata%\Cherax\Themes"
+powershell -Command "Expand-Archive %UserProfile%\Desktop\CheraxFiles\Theme.zip -DestinationPath %appdata%\Cherax\Themes"
+powershell -Command "Expand-Archive %UserProfile%\Desktop\CheraxFiles\VR46.zip -DestinationPath %appdata%\Cherax\Themes"
+powershell -Command "Expand-Archive %UserProfile%\Desktop\CheraxFiles\Vaporwave.zip -DestinationPath %appdata%\Cherax\Themes"
+powershell -Command "Expand-Archive %UserProfile%\Desktop\CheraxFiles\Yellow.zip -DestinationPath %appdata%\Cherax\Themes"
+powershell -Command "Expand-Archive %UserProfile%\Desktop\CheraxFiles\mainpctheme.zip -DestinationPath %appdata%\Cherax\Themes"
+powershell -Command "Expand-Archive %UserProfile%\Desktop\CheraxFiles\pinktheme.zip -DestinationPath %appdata%\Cherax\Themes"
+powershell -Command "Expand-Archive %UserProfile%\Desktop\CheraxFiles\rako.zip -DestinationPath %appdata%\Cherax\Themes"
+powershell -Command "Expand-Archive %UserProfile%\Desktop\CheraxFiles\red.zip -DestinationPath %appdata%\Cherax\Themes"
+powershell -Command "Expand-Archive %UserProfile%\Desktop\CheraxFiles\red2.zip -DestinationPath %appdata%\Cherax\Themes"
+powershell -Command "Expand-Archive %UserProfile%\Desktop\CheraxFiles\wik0r.zip -DestinationPath %appdata%\Cherax\Themes"
+Ping localhost -n 2 >Nul
+cls
+echo Successfully Downloaded And Installed Themes!
+Ping localhost -n 2 >Nul
+cls
+echo Removing Downloaded Files...
+rd /s /q %UserProfile%\Desktop\CheraxFiles
+Ping localhost -n 2 >Nul
+cls
+echo Successfully Removed Downloaded Files!
+GOTO :END
+
 
 :OZARK
 cls
