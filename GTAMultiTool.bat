@@ -432,7 +432,7 @@ if "%id2t1%"=="2" (
 	GOTO :2T1FILES
 )
 if not "%id2t1%"=="2" (
-	GOTO :2T1INVALID
+	GOTO :2T1OPTION3
 )
 
 :2T1OPTION3
