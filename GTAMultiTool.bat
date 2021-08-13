@@ -133,29 +133,20 @@ color 03
 cls
 color 03
 echo Selecting Folder...
-@if (@X)==(@Y) @end /* JScript comment
-@echo off
-
-:: FolderSelectorJS.bat
 setlocal
 
-for /f "tokens=* delims=" %%v in ('dir /b /s /a:-d  /o:-n "%SystemRoot%\Microsoft.NET\Framework\*jsc.exe"') do (
-   set "jsc=%%v"
-)
+set "psCommand="(new-object -COM 'Shell.Application')^
+.BrowseForFolder(0,'Please choose a folder.',0,0).self.path""
 
-if not exist "%~n0.exe" (
-    "%jsc%" /nologo /out:"%~n0.exe" "%~dpsfnx0"
-)
+for /f "usebackq delims=" %%I in (`powershell %psCommand%`) do set "folder=%%I"
 
-for /f "tokens=* delims=" %%p in ('"%~n0.exe"') do (
-    set "folder=%%p"
-)
+setlocal enabledelayedexpansion
 
-if "%folder%"=="" ( 
+if "!folder!"=="" ( 
     GOTO :GTAFIXTIMEOUTCOLOR
 )
 
-if not "%folder%"=="" ( 
+if not "!folder!"=="" ( 
     GOTO :GTAFIXREMOVALCOLOR
 )
 
@@ -175,7 +166,7 @@ endlocal & exit /b %errorlevel%
 
 :GTAFIXREMOVAL
 cls
-echo Selected Directory: %folder%
+echo Selected Directory: !folder!
 Ping localhost -n 4 >Nul
 cls
 echo.
@@ -184,63 +175,63 @@ echo.
 Ping localhost -n 4 >Nul
 
 echo Removing d3dcsx_46.dll
-del /F /Q "%folder%\d3dcsx_46.dll"
+del /F /Q "!folder!\d3dcsx_46.dll"
 Ping localhost -n 4 >Nul
 cls
 
 echo Cleaning files and folders...
 echo.
 echo Removing d3dcompiler_46.dll
-del /F /Q "%folder%\d3dcompiler_46.dll"
+del /F /Q "!folder!\d3dcompiler_46.dll"
 Ping localhost -n 4 >Nul
 cls
 
 echo Cleaning files and folders...
 echo.
 echo Removing bink2w64.dll
-del /F /Q "%folder%\bink2w64.dll"
+del /F /Q "!folder!\bink2w64.dll"
 Ping localhost -n 4 >Nul
 cls
 
 echo Cleaning files and folders...
 echo.
 echo Removing EOSSDK-Win64-Shipping.dll
-del /F /Q "%folder%\EOSSDK-Win64-Shipping.dll"
+del /F /Q "!folder!\EOSSDK-Win64-Shipping.dll"
 Ping localhost -n 4 >Nul
 cls
 
 echo Cleaning files and folders...
 echo.
 echo Removing GFSDK_ShadowLib.win64.dll
-del /F /Q "%folder%\GFSDK_ShadowLib.win64.dll"
+del /F /Q "!folder!\GFSDK_ShadowLib.win64.dll"
 Ping localhost -n 4 >Nul
 cls
 
 echo Cleaning files and folders...
 echo.
 echo Removing GFSDK_TXAA.win64.dll
-del /F /Q "%folder%\GFSDK_TXAA.win64.dll"
+del /F /Q "!folder!\GFSDK_TXAA.win64.dll"
 Ping localhost -n 4 >Nul
 cls
 
 echo Cleaning files and folders...
 echo.
 echo Removing GFSDK_TXAA_AlphaResolve.win64.dll
-del /F /Q "%folder%\GFSDK_TXAA_AlphaResolve.win64.dll"
+del /F /Q "!folder!\GFSDK_TXAA_AlphaResolve.win64.dll"
 Ping localhost -n 4 >Nul
 cls
 
 echo Cleaning files and folders...
 echo.
 echo Removing GPUPerfAPIDX11-x64.dll
-del /F /Q "%folder%\GPUPerfAPIDX11-x64.dll"
+del /F /Q "!folder!\GPUPerfAPIDX11-x64.dll"
 Ping localhost -n 4 >Nul
 cls
 
 echo Cleaning files and folders...
 echo.
 echo Removing NvPmApi.Core.win64.dll
-del /F /Q "%folder%\NvPmApi.Core.win64.dll"
+del /F /Q "!folder!\NvPmApi.Core.win64.dll"
 Ping localhost -n 4 >Nul
 cls
 echo Folder/Files Successfully Removed
@@ -264,29 +255,20 @@ color 03
 cls
 color 03
 echo Selecting Folder...
-@if (@X)==(@Y) @end /* JScript comment
-@echo off
-
-:: FolderSelectorJS.bat
 setlocal
 
-for /f "tokens=* delims=" %%v in ('dir /b /s /a:-d  /o:-n "%SystemRoot%\Microsoft.NET\Framework\*jsc.exe"') do (
-   set "jsc=%%v"
-)
+set "psCommand="(new-object -COM 'Shell.Application')^
+.BrowseForFolder(0,'Please choose a folder.',0,0).self.path""
 
-if not exist "%~n0.exe" (
-    "%jsc%" /nologo /out:"%~n0.exe" "%~dpsfnx0"
-)
+for /f "usebackq delims=" %%I in (`powershell %psCommand%`) do set "folder=%%I"
 
-for /f "tokens=* delims=" %%p in ('"%~n0.exe"') do (
-    set "folder=%%p"
-)
+setlocal enabledelayedexpansion
 
-if "%folder%"=="" ( 
+if "!folder!"=="" ( 
     GOTO :NVETIMEOUTCOLOR
 )
 
-if not "%folder%"=="" ( 
+if not "!folder!"=="" ( 
     GOTO :NVEREMOVALCOLOR
 )
 
@@ -306,7 +288,7 @@ endlocal & exit /b %errorlevel%
 
 :NVEREMOVAL
 cls
-echo Selected Directory: %folder%
+echo Selected Directory: !folder!
 Ping localhost -n 4 >Nul
 cls
 echo.
@@ -317,35 +299,35 @@ Ping localhost -n 4 >Nul
 echo Cleaning files and folders...
 echo.
 echo Removing "enbseries" Directory
-rd /s /q "%folder%\enbseries"
+rd /s /q "!folder!\enbseries"
 Ping localhost -n 4 >Nul
 cls
 
 echo Cleaning files and folders...
 echo.
 echo Removing enbseries.ini
-del /F /Q "%folder%\enbseries.ini"
+del /F /Q "!folder!\enbseries.ini"
 Ping localhost -n 4 >Nul
 cls
 
 echo Cleaning files and folders...
 echo.
 echo Removing enblocal.ini
-del /F /Q "%folder%\enblocal.ini"
+del /F /Q "!folder!\enblocal.ini"
 Ping localhost -n 4 >Nul
 cls
 
 echo Cleaning files and folders...
 echo.
 echo Removing d3dcompiler_46e.dll
-del /F /Q "%folder%\d3dcompiler_46e.dll"
+del /F /Q "!folder!\d3dcompiler_46e.dll"
 Ping localhost -n 4 >Nul
 cls
 
 echo Cleaning files and folders...
 echo.
 echo Removing d3d11.dll
-del /F /Q "%folder%\d3d11.dll"
+del /F /Q "!folder!\d3d11.dll"
 Ping localhost -n 4 >Nul
 cls
 
@@ -509,76 +491,16 @@ echo Downloading ZeroMenu...
 git clone https://github.com/luamod1337/ZeroMenu %UserProfile%\Desktop\Scripts\ZeroMenu
 cls
 echo Unzipping "headers.zip"...
-
-setlocal
-cd /d %~dp0
-Call :UnZipFile "%UserProfile%\Desktop\2Take1Files" "%UserProfile%\Desktop\2Take1Files\headers.zip"
-exit /b
-
-:UnZipFile <ExtractTo> <newzipfile>
-set vbs="%temp%\_.vbs"
-if exist %vbs% del /f /q %vbs%
->%vbs%  echo Set fso = CreateObject("Scripting.FileSystemObject")
->>%vbs% echo If NOT fso.FolderExists(%1) Then
->>%vbs% echo fso.CreateFolder(%1)
->>%vbs% echo End If
->>%vbs% echo set objShell = CreateObject("Shell.Application")
->>%vbs% echo set FilesInZip=objShell.NameSpace(%2).items
->>%vbs% echo objShell.NameSpace(%1).CopyHere(FilesInZip)
->>%vbs% echo Set fso = Nothing
->>%vbs% echo Set objShell = Nothing
-cscript //nologo %vbs%
-if exist %vbs% del /f /q %vbs%
-Ping localhost -n 2 >Nul
-cls
-
+powershell -Command "Expand-Archive %UserProfile%\Desktop\2Take1Files\headers.zip -DestinationPath %UserProfile%\Desktop\2Take1Files"
 echo Unzipping "moddedOutfits.zip"...
-
-setlocal
-cd /d %~dp0
-Call :UnZipFile "%UserProfile%\Desktop\2Take1Files" "%UserProfile%\Desktop\2Take1Files\moddedOutfits.zip"
-exit /b
-
-:UnZipFile <ExtractTo> <newzipfile>
-set vbs="%temp%\_.vbs"
-if exist %vbs% del /f /q %vbs%
->%vbs%  echo Set fso = CreateObject("Scripting.FileSystemObject")
->>%vbs% echo If NOT fso.FolderExists(%1) Then
->>%vbs% echo fso.CreateFolder(%1)
->>%vbs% echo End If
->>%vbs% echo set objShell = CreateObject("Shell.Application")
->>%vbs% echo set FilesInZip=objShell.NameSpace(%2).items
->>%vbs% echo objShell.NameSpace(%1).CopyHere(FilesInZip)
->>%vbs% echo Set fso = Nothing
->>%vbs% echo Set objShell = Nothing
-cscript //nologo %vbs%
-if exist %vbs% del /f /q %vbs%
-Ping localhost -n 4 >Nul
-cls
-
+powershell -Command "Expand-Archive %UserProfile%\Desktop\2Take1Files\moddedOutfits.zip -DestinationPath %UserProfile%\Desktop\2Take1Files"
 echo Unzipping "Kek'sMenu.zip"...
-
-setlocal
-cd /d %~dp0
-Call :UnZipFile "%UserProfile%\Desktop\2Take1Files" "%UserProfile%\Desktop\2Take1Files\Kek'sMenu.zip"
-exit /b
-
-:UnZipFile <ExtractTo> <newzipfile>
-set vbs="%temp%\_.vbs"
-if exist %vbs% del /f /q %vbs%
->%vbs%  echo Set fso = CreateObject("Scripting.FileSystemObject")
->>%vbs% echo If NOT fso.FolderExists(%1) Then
->>%vbs% echo fso.CreateFolder(%1)
->>%vbs% echo End If
->>%vbs% echo set objShell = CreateObject("Shell.Application")
->>%vbs% echo set FilesInZip=objShell.NameSpace(%2).items
->>%vbs% echo objShell.NameSpace(%1).CopyHere(FilesInZip)
->>%vbs% echo Set fso = Nothing
->>%vbs% echo Set objShell = Nothing
-cscript //nologo %vbs%
-if exist %vbs% del /f /q %vbs%
-Ping localhost -n 2 >Nul
-cls
+powershell -Command "Expand-Archive %UserProfile%\Desktop\2Take1Files\KeksMenu.zip -DestinationPath %UserProfile%\Desktop\2Take1Files"
+echo Unzipping "moddedVehicles.zip"...
+powershell -Command "Expand-Archive %UserProfile%\Desktop\2Take1Files\moddedVehicles.zip -DestinationPath %UserProfile%\Desktop\2Take1Files"
+echo Unzipping "extrascripts.zip"...
+powershell -Command "Expand-Archive %UserProfile%\Desktop\2Take1Files\extrascripts.zip -DestinationPath %UserProfile%\Desktop\2Take1Files"
+Ping localhost -n 4 >Nul
 
 echo Moving Files To 2Take1 Directory...
 Ping localhost -n 2 >Nul
@@ -591,17 +513,20 @@ move %UserProfile%\Desktop\Scripts\MoistScript\MoistsLUA_cfg %appdata%\PopstarDe
 move %UserProfile%\Desktop\Scripts\MoistScript\*.lua* %appdata%\PopstarDevs\2Take1Menu\scripts
 move %UserProfile%\Desktop\Scripts\OwlsTunerRecovery\*.lua %appdata%\PopstarDevs\2Take1Menu\scripts
 move %UserProfile%\Desktop\2Take1Files\*.cfg* %appdata%\PopstarDevs\2Take1Menu\cfg
+move %UserProfile%\Desktop\2Take1Files\scripts\*.* %appdata%\PopstarDevs\2Take1Menu\scripts
+move %UserProfile%\Desktop\2Take1Files\scripts\Golden_Eye %appdata%\PopstarDevs\2Take1Menu\scripts
+move %UserProfile%\Desktop\2Take1Files\scripts\OmniSpawner %appdata%\PopstarDevs\2Take1Menu\scripts
+move %UserProfile%\Desktop\2Take1Files\scripts\sG.wolf's_script %appdata%\PopstarDevs\2Take1Menu\scripts
+move %UserProfile%\Desktop\2Take1Files\scripts\Utilities %appdata%\PopstarDevs\2Take1Menu\scripts
 move %UserProfile%\Desktop\2Take1Files\headers\*.dds* %appdata%\PopstarDevs\2Take1Menu\ui\headers
 move %UserProfile%\Desktop\2Take1Files\moddedOutfits %appdata%\PopstarDevs\2Take1Menu
-move %UserProfile%\Desktop\2Take1Files\MenyooVehicles %appdata%\PopstarDevs\2Take1Menu\scripts
+move %UserProfile%\Desktop\2Take1Files\moddedVehicles %appdata%\PopstarDevs\2Take1Menu
+move %UserProfile%\Desktop\2Take1Files\Menyoo Vehicles %appdata%\PopstarDevs\2Take1Menu\scripts
 move %UserProfile%\Desktop\Scripts\ZeroMenu\src\*.lua* %appdata%\PopstarDevs\2Take1Menu\scripts
 move %UserProfile%\Desktop\Scripts\ZeroMenu\src\ZeroMenuLib %appdata%\PopstarDevs\2Take1Menu\scripts
-move %UserProfile%\Desktop\2Take1Files\2Take1Script\2Take1Script %appdata%\PopstarDevs\2Take1Menu\scripts
-move %UserProfile%\Desktop\2Take1Files\2Take1Script\lib %appdata%\PopstarDevs\2Take1Menu\scripts
-move %UserProfile%\Desktop\2Take1Files\2Take1Script\*.lua* %appdata%\PopstarDevs\2Take1Menu\scripts
 move %UserProfile%\Desktop\2Take1Files\Heist_Control_v2\*.lua* %appdata%\PopstarDevs\2Take1Menu\scripts
-move %UserProfile%\Desktop\2Take1Files\Kek'sMenu\kek_menu_stuff %appdata%\PopstarDevs\2Take1Menu\scripts
-move %UserProfile%\Desktop\2Take1Files\Kek'sMenu\*.lua* %appdata%\PopstarDevs\2Take1Menu\scripts
+move %UserProfile%\Desktop\2Take1Files\KeksMenu\kek_menu_stuff %appdata%\PopstarDevs\2Take1Menu\scripts
+move %UserProfile%\Desktop\2Take1Files\KeksMenu\*.lua* %appdata%\PopstarDevs\2Take1Menu\scripts
 
 Ping localhost -n 4 >Nul
 cls
